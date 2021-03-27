@@ -14,6 +14,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         lbl.text = "Hurrah!"
+        HttpManager.shared.fetchURL()
     }
 
    

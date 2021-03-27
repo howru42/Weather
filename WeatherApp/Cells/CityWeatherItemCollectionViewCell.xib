@@ -27,10 +27,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pz-Zz-4Ja" customClass="LabelWithUnits" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="units" value="C"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="lblText" value="20"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDk-Vp-g2c">
                                         <rect key="frame" x="0.0" y="50" width="100" height="50"/>

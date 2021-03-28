@@ -42,8 +42,20 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     }
     
     @IBAction func tappedRightBtn(_ sender:Any){
-        let controller = AddCityViewController(nibName: "AddCityViewController", bundle: nil)
-        navigationController?.pushViewController(controller, animated: true)
+        if deleteItem != -1 {
+            showAlert(title: "Delete", msg: "Are you sure want to delete?", btn1Name: "Proceed", btn2Name: "Cancel", btn1Action: { [weak self] in
+                guard let self = self else { return }
+                self.cities.remove(at: self.deleteItem)
+                AccountManager.shared.locations = self.cities
+                self.deleteItem = -1
+            }) {
+                self.deleteItem = -1
+            }
+            
+        }else{
+            let controller = AddCityViewController(nibName: "AddCityViewController", bundle: nil)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: UICollectionViewDataSource
@@ -61,19 +73,18 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CityWeatherItemCollectionViewCell)!
         let location = cities[indexPath.row]
         cell.setDetails(location.cityName, "30", "31 / 29","Cloudy")
-        cell.dropShadow(color: .darkGray, offSet:  CGSize(width: -1, height: 1))
-    
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width:CGFloat = min(view.frame.size.width,400)
-        let height = min(width/3, 120)
+        let height = min(width/3, 100)
         return CGSize(width: width-20, height: height)
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        deleteItem = -1
         let controller = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -82,16 +93,19 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
 
 extension HomeCollectionViewController:UIGestureRecognizerDelegate{
     func registerActions() {
+        
         let gesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         gesture.minimumPressDuration = 0.5
         gesture.delegate = self
         gesture.delaysTouchesBegan = true
         collectionView.addGestureRecognizer(gesture)
-        collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(disableDelete)))
+//        collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(disableDelete)))
     }
     
     @IBAction func disableDelete(){
         deleteItem = -1
+        let controller = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer){

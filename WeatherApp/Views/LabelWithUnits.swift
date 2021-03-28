@@ -37,6 +37,14 @@ class LabelWithUnits: UIView {
         set{ lbl.font = newValue }
     }
     
+    var color:UIColor{
+        get{return lbl.textColor}
+        set{ lbl.textColor = newValue
+            unitsLbl.textColor = newValue
+            degreeIconView.tintColor = newValue
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -63,7 +71,7 @@ class LabelWithUnits: UIView {
         
         NSLayoutConstraint.activate([
             lbl.centerYAnchor.constraint(equalTo: centerYAnchor),
-            lbl.leadingAnchor.constraint(equalTo: leadingAnchor),
+            lbl.centerXAnchor.constraint(equalTo: centerXAnchor,constant: -10),
             degreeIconView.widthAnchor.constraint(equalToConstant: 8),
             degreeIconView.heightAnchor.constraint(equalToConstant: 8),
             degreeIconView.topAnchor.constraint(equalTo: lbl.topAnchor,constant: 4),

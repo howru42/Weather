@@ -28,6 +28,10 @@
 		02ACF3E626106B5E006C3E04 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02ACF3E526106B5E006C3E04 /* MapKit.framework */; };
 		02ACF3E826106BE0006C3E04 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02ACF3E726106BE0006C3E04 /* CoreLocation.framework */; };
 		02ACF3F32610BDEE006C3E04 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF3F22610BDEE006C3E04 /* AccountManager.swift */; };
+		02ACF3F82610D130006C3E04 /* MultiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF3F72610D130006C3E04 /* MultiLabel.swift */; };
+		02ACF3FD2610ED2A006C3E04 /* MultiLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF3FC2610ED2A006C3E04 /* MultiLabel.xib */; };
+		02ACF4022610F147006C3E04 /* LabelWithWeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF4012610F147006C3E04 /* LabelWithWeatherIcon.swift */; };
+		02ACF4072610F14F006C3E04 /* LabelWithWeatherIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF4062610F14F006C3E04 /* LabelWithWeatherIcon.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		02ACF3E526106B5E006C3E04 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		02ACF3E726106BE0006C3E04 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		02ACF3F22610BDEE006C3E04 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		02ACF3F72610D130006C3E04 /* MultiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLabel.swift; sourceTree = "<group>"; };
+		02ACF3FC2610ED2A006C3E04 /* MultiLabel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiLabel.xib; sourceTree = "<group>"; };
+		02ACF4012610F147006C3E04 /* LabelWithWeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithWeatherIcon.swift; sourceTree = "<group>"; };
+		02ACF4062610F14F006C3E04 /* LabelWithWeatherIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelWithWeatherIcon.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				02ACF3BE260FB426006C3E04 /* LabelWithUnits.swift */,
+				02ACF3F72610D130006C3E04 /* MultiLabel.swift */,
+				02ACF3FC2610ED2A006C3E04 /* MultiLabel.xib */,
+				02ACF4012610F147006C3E04 /* LabelWithWeatherIcon.swift */,
+				02ACF4062610F14F006C3E04 /* LabelWithWeatherIcon.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +338,8 @@
 				02ACF3B1260FAFB9006C3E04 /* HomeCollectionViewController.xib in Resources */,
 				02ACF39F260FAEA2006C3E04 /* DetailsViewController.xib in Resources */,
 				02ACF3B9260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.xib in Resources */,
+				02ACF4072610F14F006C3E04 /* LabelWithWeatherIcon.xib in Resources */,
+				02ACF3FD2610ED2A006C3E04 /* MultiLabel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,12 +368,14 @@
 				02ACF3F32610BDEE006C3E04 /* AccountManager.swift in Sources */,
 				02ACF385260FAC66006C3E04 /* AppColors.swift in Sources */,
 				02ACF34E260F2EAF006C3E04 /* AppDelegate.swift in Sources */,
+				02ACF4022610F147006C3E04 /* LabelWithWeatherIcon.swift in Sources */,
 				02ACF3B8260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.swift in Sources */,
 				02ACF3BF260FB426006C3E04 /* LabelWithUnits.swift in Sources */,
 				02ACF3DF26106B4C006C3E04 /* AddCityViewController.swift in Sources */,
 				02ACF396260FAE00006C3E04 /* Common.swift in Sources */,
 				02ACF3B0260FAFB9006C3E04 /* HomeCollectionViewController.swift in Sources */,
 				02ACF3D9260FC844006C3E04 /* WeatherData.swift in Sources */,
+				02ACF3F82610D130006C3E04 /* MultiLabel.swift in Sources */,
 				02ACF3D3260FC729006C3E04 /* HttpManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

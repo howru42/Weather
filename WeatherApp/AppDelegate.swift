@@ -22,14 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setNavigationBarUI() {
-        navigationController?.navigationBar.barTintColor = UIColor.orange
         let navigationbarAppearance = UINavigationBar.appearance()
         let barbuttonItemAppearance = UIBarButtonItem.appearance()
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.orange]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationbarAppearance.tintColor = UIColor.white
-        barbuttonItemAppearance.tintColor = UIColor.white
-        navigationbarAppearance.barTintColor = UIColor.orange
+        navigationbarAppearance.tintColor = UIColor.orange
+        barbuttonItemAppearance.tintColor = UIColor.orange
+        navigationbarAppearance.barTintColor = UIColor.white
         navigationController?.navigationBar.isTranslucent = false
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

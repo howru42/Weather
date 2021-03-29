@@ -9,9 +9,10 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class HomeCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class HomeCollectionViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate {
+    @IBOutlet weak var collectionView:UICollectionView!
     
-    var cities:[Location] = []{
+    var cities:[WeatherResponse] = []{
         didSet{
             collectionView.reloadData()
         }
@@ -20,6 +21,7 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     var deleteItem:Int = -1{
         didSet{
             rightBtn.image = UIImage(named: (deleteItem != -1) ? "trash" : "plus")
+            toggleCellSelection()
         }
     }
     
@@ -28,17 +30,19 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Weather"
-//        collectionView.backgroundColor = .lightGray
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         registerActions()
         navigationItem.rightBarButtonItem = rightBtn
         collectionView.register(getNib("CityWeatherItemCollectionViewCell"), forCellWithReuseIdentifier: reuseIdentifier)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deleteItem = -1
         cities = AccountManager.shared.locations
+        fetchWeatherData()
     }
     
     @IBAction func tappedRightBtn(_ sender:Any){
@@ -57,22 +61,21 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
-    // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    // MARK: UICollectionViewDataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cities.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CityWeatherItemCollectionViewCell)!
-        let location = cities[indexPath.row]
-        cell.setDetails(location.cityName, "30", "31 / 29","Cloudy")
+        let weather = cities[indexPath.row]
+        cell.setDetails(weather)
         return cell
     }
 
@@ -83,9 +86,10 @@ class HomeCollectionViewController: UICollectionViewController,UICollectionViewD
     }
     
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         deleteItem = -1
         let controller = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+        controller.selectedCity = cities[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -115,6 +119,36 @@ extension HomeCollectionViewController:UIGestureRecognizerDelegate{
         let point = gestureRecognizer.location(in: collectionView)
         if let indexPath : NSIndexPath = (collectionView.indexPathForItem(at: point)) as NSIndexPath?{
             deleteItem = (deleteItem == -1) ? indexPath.row : -1
+        }
+    }
+    
+    @IBAction func tappedHelp(){
+        let helpController = HelpViewController(nibName: "HelpViewController", bundle: nil)
+        navigationController?.pushViewController(helpController, animated: true)
+    }
+    
+    func toggleCellSelection() {
+        if let cell = collectionView.cellForItem(at: IndexPath(row: (deleteItem != -1 ? deleteItem : 0), section: 0)) as? CityWeatherItemCollectionViewCell{
+            cell.isItemSelecte = (deleteItem != -1)
+        }
+    }
+}
+
+//API Calls
+extension HomeCollectionViewController{
+    func fetchWeatherData(){
+            cities.indices.forEach{ (idx) in
+            let item = cities[idx]
+                guard let coordinates = item.coord else {return}
+            HttpManager.shared.fetchWeather(coordinates) { [weak self] (response, error) in
+                if let error = error{
+                    self?.showAlert(title: error, msg: "", btn1Name: "OK")
+                }else if let response = response as? WeatherResponse{
+                    DispatchQueue.main.async {
+                        self?.cities[idx] = response
+                    }
+                }
+            }
         }
     }
 }

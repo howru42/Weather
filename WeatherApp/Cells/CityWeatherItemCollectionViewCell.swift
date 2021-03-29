@@ -14,29 +14,42 @@ class CityWeatherItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tempMaxMinLbl:UILabel!
     @IBOutlet weak var weatherLbl:UILabel!
     @IBOutlet weak var bgView:UIView!
+    @IBOutlet weak var selectionView:UIView!
+    var isItemSelecte:Bool = false{
+        didSet{
+            selectionView.isHidden = !isItemSelecte
+        }
+    }
+    
     var colors:[UIColor] = [AppColors.blueColor,AppColors.redColor,AppColors.orangeColor,AppColors.yellowColor]
+    
+    var randomColor:UIColor{
+        get{
+            return colors[Int.random(in: 0..<4)]
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        bgView.backgroundColor = .clear
-        layer.cornerRadius = 10
-    }
-    
-    func setDetails(_ city:String, _ temp:String,_ maxTemp:String,_ weatherStatus:String) {
-        let random = Int.random(in: 0..<4)
-        let color = colors[random]
-        backgroundColor = color
-        cityName.text = city
-        
+        selectionView.isHidden = true
+        bgView.backgroundColor = randomColor
+        bgView.layer.cornerRadius = 20
+        backgroundColor = .clear
         cityName.font = .boldSystemFont(ofSize: 20)
         weatherLbl.font = .systemFont(ofSize: 20)
         tempLbl.tempFont = .boldSystemFont(ofSize: 30)
-        tempLbl.temperature = (temp,"C")
         
-        tempMaxMinLbl.text = maxTemp
-        weatherLbl.text = weatherStatus
-        weatherImg.image = UIImage(named: "sun")
+    }
+    
+    func setDetails(_ weather:WeatherResponse) {
+        
+        tempLbl.temperature = weather.temp()
+        cityName.text = weather.name
+        tempMaxMinLbl.text = weather.minMaxTemp()
+        weatherLbl.text = weather.weather.first?.description ?? ""
+        if let temp = weather.weather.first{
+            weatherImg.image = temp.weatherIcon
+        }
         setUI()
     }
     

@@ -8,8 +8,8 @@
 import UIKit
 import MapKit
 
-struct Location {
-    var coordinate:CLLocationCoordinate2D
+struct Location:Codable {
+    var coordinate:Coordinates
     var cityName:String
 }
 
@@ -21,7 +21,8 @@ class AddCityViewController: UIViewController,MKMapViewDelegate {
     var selectedLocation:Location?{
         didSet{
             if let location = selectedLocation{
-                addAnnotaion(coordinate: location.coordinate, title: location.cityName)
+                let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.lat, longitude: location.coordinate.lon)
+                addAnnotaion(coordinate: coordinate, title: location.cityName)
             }
         }
     }
@@ -42,7 +43,8 @@ class AddCityViewController: UIViewController,MKMapViewDelegate {
     
     @IBAction func tappedDone(){
         if let location = selectedLocation{
-            AccountManager.shared.locations.append(location)
+            let weather = WeatherResponse(coord: location.coordinate,name: location.cityName)
+            AccountManager.shared.locations.append(weather)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -71,7 +73,8 @@ class AddCityViewController: UIViewController,MKMapViewDelegate {
             
             if (placemarks?.count)! > 0 {
                 if let pm = placemarks?[0] {
-                    self?.selectedLocation = Location(coordinate: coordinate, cityName: pm.locality ?? "")
+                    let coordinates = Coordinates(lon: coordinate.longitude, lat: coordinate.latitude)
+                    self?.selectedLocation = Location(coordinate: coordinates, cityName: pm.locality ?? "")
                 }
             } else {
                 debugPrint("Problem with the data received from geocoder")

@@ -32,9 +32,12 @@ class LabelWithWeatherIcon: UIView {
         contentView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
     }
     
-    func setDetails(_ day:String,_ date:String,_ weatherType:String,_ temp:String) {
+    func setDetails(_ day:String,_ date:String,_ weatherType:String,_ temp:String,_ icon:UIImage?) {
         dayLbl.text = day
         dateLbl.text = date
-        weatherLbl.temperature = (temp,"C")        
+        weatherLbl.temperature = (temp,"C")
+        if let icon = icon{
+            weatherIcon.image = icon
+        }
     }
 }

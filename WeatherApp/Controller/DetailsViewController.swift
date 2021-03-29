@@ -29,37 +29,86 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var windLbl:MultiLabel!
     @IBOutlet weak var cloudsLbl:MultiLabel!
     
+    var selectedCity:WeatherResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let city = selectedCity else { return  }
+        fetchForecast()
         
-        
-//        HttpManager.shared.fetchURL()
-        
-        tempLbl.temperature = ("27","C")
+        tempLbl.temperature = city.temp()
         tempLbl.tempFont = .boldSystemFont(ofSize: 50)
-        cityLbl.text = "Hyderabad"
-        weatherLbl.text = "Mostly Clear"
-        minMaxTempLbl.text = "H:37 L:20"
+        cityLbl.text = city.name
+        weatherLbl.text = city.weather.first?.description
+        minMaxTempLbl.text = city.minMaxTemp()
+        visibilityLbl.setDetails("Visibility",city.getVisibilty())
         
-        day1Lbl.setDetails("Mon", "Mar 20", "Haze", "30")
-        day2Lbl.setDetails("Tue", "Mar 21", "Haze", "30")
-        day3Lbl.setDetails("Wed", "Mar 22", "Haze", "30")
-        day4Lbl.setDetails("Thu", "Mar 23", "Haze", "30")
-        day5Lbl.setDetails("Fri", "Mar 24", "Haze", "30")
+        if let details = city.main{
+            humidityLbl.setDetails("humidity","\(details.humidity)%")
+            feelsLbl.setDetails("feels like","\(details.feelsLike.temp())")
+            pressureLbl.setDetails("Pressure","\(details.pressure) hPa")
+        }
         
-     
-        sunriseLbl.setDetails("Sunrise","6:12AM")
-        sunsetLbl.setDetails("Sunset","6:12PM")
-        humidityLbl.setDetails("humidity","6:12AM")
-        feelsLbl.setDetails("Sunrise","6:12AM")
-        pressureLbl.setDetails("Sunrise","6:12AM")
-        visibilityLbl.setDetails("Sunrise","6:12AM")
-        windLbl.setDetails("Wind","5 KPH")
-        cloudsLbl.setDetails("Clouds","40")
-        
+        if let sys = city.sys,let sunset = sys.sunset,let sunrise = sys.sunrise{
+            sunriseLbl.setDetails("Sunrise",sunset.toDate().time())
+            sunsetLbl.setDetails("Sunset",sunrise.toDate().time())
+        }
+
+        if let wind = city.wind{
+            windLbl.setDetails("Wind","\(wind.speed) KPH")
+        }
+        if let cloud = city.clouds{
+            cloudsLbl.setDetails("Clouds","\(cloud.all)")
+        }
     }
 
+    func fetchForecast() {
+        guard let coordinates = selectedCity?.coord else { return  }
+        HttpManager.shared.fetchForecast(coordinates) { [weak self] (response, error) in
+            if let error = error{
+                self?.showAlert(title: error, msg: "", btn1Name: "OK")
+            }else if let response = response as? ForecastResponse{
+                var uniqueItems:[String:WeatherResponse]
+                    = [:]
+                var uniqueDates:[String] = []
+                response.list.forEach { (item) in
+                    if let date = item.dt?.toDate().time("MM/dd/yyyy"),!Array(uniqueItems.keys).contains(date){
+                        uniqueItems[date] = item
+                        uniqueDates.append(date)
+                    }
+                }
+                
+                let sortedItems = uniqueDates.sorted(by: {$0 < $1})
+                debugPrint(sortedItems)
+                DispatchQueue.main.async {
+                    self?.updateForecastTemp(uniqueDates,uniqueItems)
+                }
+                
+            }
+        }
+    }
    
-
+    func updateForecastTemp(_ uniqueDates:[String],_ items:[String:WeatherResponse]) {
+        let labels = [day1Lbl,day2Lbl,day3Lbl,day4Lbl,day5Lbl]
+        for idx in 0..<labels.count {
+            let date = uniqueDates[idx]
+            if let item = items[date]{
+                setDetails(labels[idx], item)
+            }
+        }
+    }
+    
+    func setDetails(_ lbl:LabelWithWeatherIcon?,_ item:WeatherResponse){
+        let dayDate = dayAndDate(item.dt)
+        let weather = item.weather.first?.weatherType ?? ""
+        lbl?.setDetails(dayDate.1,dayDate.0, weather, item.temp().0,item.weather.first?.weatherIcon ?? nil)
+    }
+    
+    func dayAndDate(_ time:Double?) -> (String,String) {
+        guard let time = time else { return ("","") }
+        let displayDate = time.toDate().time("MMM d")
+        let displayDay = time.toDate().time("E")
+        return (displayDate,displayDay)
+    }
 }
 

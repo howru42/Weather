@@ -5,31 +5,61 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeCollectionViewController" customModule="WeatherApp" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="collectionView" destination="8lT-Lu-JFB" id="U9D-y5-tc8"/>
+                <outlet property="view" destination="iN0-l3-epB" id="HfP-rh-HVB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <viewLayoutGuide key="safeArea" id="oBF-5E-Iza"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c7k-ch-oGk">
-                <size key="itemSize" width="50" height="50"/>
-                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-            </collectionViewFlowLayout>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
-                <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
-            </connections>
-            <point key="canvasLocation" x="-96" y="64"/>
-        </collectionView>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8lT-Lu-JFB">
+                    <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SGO-YN-0x0">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQS-Ah-lkU">
+                    <rect key="frame" x="356" y="850" width="34" height="30"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Help">
+                        <color key="titleColor" systemColor="systemOrangeColor"/>
+                    </state>
+                    <connections>
+                        <action selector="tappedHelp" destination="-1" eventType="touchUpInside" id="56O-fL-Mlq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CQS-Ah-lkU" secondAttribute="trailing" constant="24" id="1yN-qF-Oyp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8lT-Lu-JFB" secondAttribute="trailing" id="G2X-XT-XEZ"/>
+                <constraint firstItem="8lT-Lu-JFB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NMZ-eZ-Icp"/>
+                <constraint firstItem="8lT-Lu-JFB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="NYU-C7-Qch"/>
+                <constraint firstAttribute="bottom" secondItem="CQS-Ah-lkU" secondAttribute="bottom" constant="16" id="h4T-k3-2yC"/>
+                <constraint firstItem="CQS-Ah-lkU" firstAttribute="top" secondItem="8lT-Lu-JFB" secondAttribute="bottom" constant="8" id="nA7-1R-X0g"/>
+            </constraints>
+            <point key="canvasLocation" x="-886.95652173913049" y="130.58035714285714"/>
+        </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

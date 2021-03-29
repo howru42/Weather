@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02689AF72611FE8A000C36B2 /* help.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 02689AF62611FE8A000C36B2 /* help.pdf */; };
+		02689AFD2611FE9F000C36B2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02689AFB2611FE9F000C36B2 /* HelpViewController.swift */; };
+		02689AFE2611FEA0000C36B2 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02689AFC2611FE9F000C36B2 /* HelpViewController.xib */; };
+		02689B032611FF57000C36B2 /* HomeCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02689B022611FF57000C36B2 /* HomeCollectionViewController.xib */; };
 		02ACF34E260F2EAF006C3E04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF34D260F2EAF006C3E04 /* AppDelegate.swift */; };
 		02ACF352260F2EAF006C3E04 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF351260F2EAF006C3E04 /* DetailsViewController.swift */; };
 		02ACF357260F2EB1006C3E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF356260F2EB1006C3E04 /* Assets.xcassets */; };
@@ -17,7 +21,6 @@
 		02ACF396260FAE00006C3E04 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF395260FAE00006C3E04 /* Common.swift */; };
 		02ACF39F260FAEA2006C3E04 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF39E260FAEA2006C3E04 /* DetailsViewController.xib */; };
 		02ACF3B0260FAFB9006C3E04 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF3AE260FAFB9006C3E04 /* HomeCollectionViewController.swift */; };
-		02ACF3B1260FAFB9006C3E04 /* HomeCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF3AF260FAFB9006C3E04 /* HomeCollectionViewController.xib */; };
 		02ACF3B8260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF3B6260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.swift */; };
 		02ACF3B9260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02ACF3B7260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.xib */; };
 		02ACF3BF260FB426006C3E04 /* LabelWithUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ACF3BE260FB426006C3E04 /* LabelWithUnits.swift */; };
@@ -52,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02689AF62611FE8A000C36B2 /* help.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = help.pdf; sourceTree = "<group>"; };
+		02689AFB2611FE9F000C36B2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		02689AFC2611FE9F000C36B2 /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		02689B022611FF57000C36B2 /* HomeCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewController.xib; sourceTree = "<group>"; };
 		02ACF34A260F2EAF006C3E04 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02ACF34D260F2EAF006C3E04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02ACF351260F2EAF006C3E04 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +75,6 @@
 		02ACF395260FAE00006C3E04 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		02ACF39E260FAEA2006C3E04 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		02ACF3AE260FAFB9006C3E04 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
-		02ACF3AF260FAFB9006C3E04 /* HomeCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewController.xib; sourceTree = "<group>"; };
 		02ACF3B6260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		02ACF3B7260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityWeatherItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		02ACF3BE260FB426006C3E04 /* LabelWithUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithUnits.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 		02ACF383260FAC58006C3E04 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				02689AF62611FE8A000C36B2 /* help.pdf */,
 				02ACF384260FAC66006C3E04 /* AppColors.swift */,
 				02ACF395260FAE00006C3E04 /* Common.swift */,
 				02ACF3D2260FC729006C3E04 /* HttpManager.swift */,
@@ -184,9 +191,11 @@
 				02ACF351260F2EAF006C3E04 /* DetailsViewController.swift */,
 				02ACF39E260FAEA2006C3E04 /* DetailsViewController.xib */,
 				02ACF3AE260FAFB9006C3E04 /* HomeCollectionViewController.swift */,
-				02ACF3AF260FAFB9006C3E04 /* HomeCollectionViewController.xib */,
+				02689B022611FF57000C36B2 /* HomeCollectionViewController.xib */,
 				02ACF3DD26106B4C006C3E04 /* AddCityViewController.swift */,
 				02ACF3DE26106B4C006C3E04 /* AddCityViewController.xib */,
+				02689AFB2611FE9F000C36B2 /* HelpViewController.swift */,
+				02689AFC2611FE9F000C36B2 /* HelpViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,13 +342,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				02ACF35A260F2EB1006C3E04 /* LaunchScreen.storyboard in Resources */,
+				02689AFE2611FEA0000C36B2 /* HelpViewController.xib in Resources */,
 				02ACF3E026106B4C006C3E04 /* AddCityViewController.xib in Resources */,
 				02ACF357260F2EB1006C3E04 /* Assets.xcassets in Resources */,
-				02ACF3B1260FAFB9006C3E04 /* HomeCollectionViewController.xib in Resources */,
+				02689B032611FF57000C36B2 /* HomeCollectionViewController.xib in Resources */,
 				02ACF39F260FAEA2006C3E04 /* DetailsViewController.xib in Resources */,
 				02ACF3B9260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.xib in Resources */,
 				02ACF4072610F14F006C3E04 /* LabelWithWeatherIcon.xib in Resources */,
 				02ACF3FD2610ED2A006C3E04 /* MultiLabel.xib in Resources */,
+				02689AF72611FE8A000C36B2 /* help.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +382,7 @@
 				02ACF4022610F147006C3E04 /* LabelWithWeatherIcon.swift in Sources */,
 				02ACF3B8260FB12B006C3E04 /* CityWeatherItemCollectionViewCell.swift in Sources */,
 				02ACF3BF260FB426006C3E04 /* LabelWithUnits.swift in Sources */,
+				02689AFD2611FE9F000C36B2 /* HelpViewController.swift in Sources */,
 				02ACF3DF26106B4C006C3E04 /* AddCityViewController.swift in Sources */,
 				02ACF396260FAE00006C3E04 /* Common.swift in Sources */,
 				02ACF3B0260FAFB9006C3E04 /* HomeCollectionViewController.swift in Sources */,
